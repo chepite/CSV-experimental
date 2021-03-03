@@ -1,0 +1,70 @@
+.leaderboards{
+    display: flex;
+}
+.container{
+    width: 60rem;
+}
+.leaderboard{
+    display: flex block ;
+    flex-direction: column;
+    background-color: #171827;
+    color:#a1a3c2;
+    width: 30rem;
+    height: 17rem;
+    margin: 1rem;
+}
+.tableTitle{
+    margin: 1rem;
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+.playerData{
+    font-weight: 500;
+}
+.leaderboard__team{
+    width: 100%;
+}
+.leaderboard__team, th, tr,td{
+    /*table border styling*/
+    border: 1px solid  #a1a3c2;;
+}
+td,th{
+    padding: 0.5rem;
+}
+.winner{
+    color: green;
+}
+.loser{
+    color: red;
+}
+select{
+    width: 10rem;
+}
+.charts{
+    width: 20rem;
+    height: 15rem;
+}
+.return{
+    position: relative;
+    margin: 2rem;
+    margin-left: -30rem;
+    align-self: space-evenly;
+}
+.return__link{
+    font-size: 1.3rem;
+}
+.fas{
+    color: white;
+}
+.charts{
+    display: flex;
+    justify-content: center;
+}
+canvas{
+    margin: 3rem; 
+}
+.charts__title{
+    font-weight: 500;
+    font-size: 1.3rem;
+    margin-top: 3rem;
+}

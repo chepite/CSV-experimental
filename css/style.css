@@ -1,0 +1,226 @@
+
+/*
+colours
+#171827 cs background color achtig
+#252635 /donkergrijs/blauw
+#3d3f53 tussengrijs/blauw
+#a1a3c2 lichtgrijs/blauw
+#525ad3 blauw
+#cf3723 rood
+//misschien kijken voor cs geel en rood --> handig als ik stats wil tonen
+*/
+/*font-family: 'Montserrat', sans-serif;*/
+html{
+  display: flex;
+  justify-content: center;
+}
+body{
+    width: 60rem;
+    height: 100%;
+    font-family: 'Montserrat', sans-serif;
+    background-color: #171827;
+    color: #a1a3c2;
+}
+.nav{
+    font-weight: 500;
+    display: flex;
+    height: 5rem;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 5rem;
+}
+.nav__list{
+    margin-top: 2rem;
+    font-size: 1.3rem;
+    font-weight: 500;
+    display: flex;
+    flex-direction: row;
+}
+.nav__list--item{
+    margin: 1rem;
+}
+.nav__list--item a{
+    text-decoration: none;
+    color: rgb(226, 226, 226);
+}
+.nav__list--item a:hover{
+    color: #525ad3;
+}
+.container{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+.colorOverlay{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-color: #171827;
+    opacity: 0.5;
+}
+.highlight__subtitle{
+    font-weight: bold;
+    font-size: 2rem;
+    border-bottom: 5px solid #a1a3c2;
+    border-radius: 5px;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+}
+.highlight{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.highlight__match{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    margin: 1rem;
+    width: 60rem;
+    height: 20rem;
+    border-radius: 5rem;
+    /*background settings*/
+    /* background-image: url(../assets/images/banners/de_nuke_banner.jpg); */
+    background-blend-mode: lighten;
+    background-position: center;
+    background-repeat: no-repeat;
+    /*graying out background image*/
+     /* background-color: #a1a3c2;  */
+    /* clip-path: polygon(0 0, 100% 0, 100% 100%); */
+}
+.highlight__match--info{
+    color: white;
+    margin-top: -1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.highlight__match--title{
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+    font-size: 1.8rem;
+    /* grid-area: title; */
+}
+.highlight__match--map{
+    margin-top: 1rem;
+    font-size: 1.3rem;
+    font-weight: 500;
+    /* grid-area: map; */
+}
+.highlight__match--score{
+    color: white;
+    font-weight: bold;
+    font-size: 4rem;
+    margin-top: -2rem;
+    display: flex;
+    flex-direction: row;
+}
+.highlight__match--score p{
+    display: flex;
+    flex-direction: row;
+    margin: 1rem;
+}
+.highlight__length{
+    font-size: 1.5rem;
+    font-weight: 500;
+    color:rgb(226, 226, 226)
+}
+
+
+/*test loader*/
+.loader {
+    width: 48px;
+    height: 48px;
+    display: inline-block;
+    position: relative;
+    transform: rotate(45deg);
+  }
+  .loader::before {
+    content: '';  
+    box-sizing: border-box;
+    width: 24px;
+    height: 24px;
+    position: absolute;
+    left: 0;
+    top: -24px;
+    animation: animloader 4s ease infinite;
+  }
+  .loader::after {
+    content: '';  
+    box-sizing: border-box;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 24px;
+    height: 24px;
+    background: rgba(255, 255, 255, 0.85);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+    animation: animloader2 2s ease infinite;
+  }
+  
+  @keyframes animloader {
+    0% {
+      box-shadow: 0 24px rgba(255, 255, 255, 0), 24px 24px rgba(255, 255, 255, 0), 24px 48px rgba(255, 255, 255, 0), 0px 48px rgba(255, 255, 255, 0);
+    }
+    12% {
+      box-shadow: 0 24px white, 24px 24px rgba(255, 255, 255, 0), 24px 48px rgba(255, 255, 255, 0), 0px 48px rgba(255, 255, 255, 0);
+    }
+    25% {
+      box-shadow: 0 24px white, 24px 24px white, 24px 48px rgba(255, 255, 255, 0), 0px 48px rgba(255, 255, 255, 0);
+    }
+    37% {
+      box-shadow: 0 24px white, 24px 24px white, 24px 48px white, 0px 48px rgba(255, 255, 255, 0);
+    }
+    50% {
+      box-shadow: 0 24px white, 24px 24px white, 24px 48px white, 0px 48px white;
+    }
+    62% {
+      box-shadow: 0 24px rgba(255, 255, 255, 0), 24px 24px white, 24px 48px white, 0px 48px white;
+    }
+    75% {
+      box-shadow: 0 24px rgba(255, 255, 255, 0), 24px 24px rgba(255, 255, 255, 0), 24px 48px white, 0px 48px white;
+    }
+    87% {
+      box-shadow: 0 24px rgba(255, 255, 255, 0), 24px 24px rgba(255, 255, 255, 0), 24px 48px rgba(255, 255, 255, 0), 0px 48px white;
+    }
+    100% {
+      box-shadow: 0 24px rgba(255, 255, 255, 0), 24px 24px rgba(255, 255, 255, 0), 24px 48px rgba(255, 255, 255, 0), 0px 48px rgba(255, 255, 255, 0);
+    }
+  }
+  
+  @keyframes animloader2 {
+    0% {
+      transform: translate(0, 0) rotateX(0) rotateY(0);
+    }
+    25% {
+      transform: translate(100%, 0) rotateX(0) rotateY(180deg);
+    }
+    50% {
+      transform: translate(100%, 100%) rotateX(-180deg) rotateY(180deg);
+    }
+    75% {
+      transform: translate(0, 100%) rotateX(-180deg) rotateY(360deg);
+    }
+    100% {
+      transform: translate(0, 0) rotateX(0) rotateY(360deg);
+    }
+  }
+   #loading{
+       position: absolute;
+       display: flex;
+       flex-direction: row;
+       align-items: center;
+       justify-content: center;
+   }
+   .matchesForm{
+       display: flex;
+       justify-content: center;
+   }
+   .loading__sentence{
+     margin-top: 2rem;
+   }
+

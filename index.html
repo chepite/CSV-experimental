@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <title>Document</title>
+  </head>
+  <nav class="nav">
+    <ul class="nav__list">
+      <li class="nav__list--item"><a href="index.html">Home</a></li>
+    </ul>
+  </nav>
+  <main class="container">
+    <div id="loading">
+        <div class="loader"></div>
+        <span class="loading__progress"></span>
+        <p class="loading__sentence"></p>
+    </div>
+    <div class="content">
+    <form class="matchesForm">
+      <input list="matchesForm__teams" id="teams" />
+      <datalist id="matchesForm__teams">
+        <select class="matchesForm__teams--list"></select>
+      </datalist>
+
+      <input list="matchesForm__events" id="events" />
+      <datalist id="matchesForm__events">
+        <select class="matchesForm__events--list"></select>
+      </datalist>
+      <input type="submit" />
+    </form>
+    <ul class="matches__list"></ul>
+  </div>
+  </main>
+  <footer></footer>
+  <body>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="js/papaparse.min.js"></script>
+    <script src="js/matches.js"></script>
+  </body>
+</html>
