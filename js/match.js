@@ -67,13 +67,12 @@
     if (team1.length > 0) {
       console.log(team1[0]);
       //get the map abbr
-      console.log(team1[0]);
-      if (team1[0].map_1 === economyData._map) {
+      console.log()
+      if (team1[0].map_1 !== "" && team1[0].map_1 === matchData._map) {
         mapAbbr = `m1`;
-      } else if (team1[0].map_2 === economyData._map) {
-        console.log(`true`);
+      } else if (team1[0].map_2 !== "" && team1[0].map_2 === matchData._map) {
         mapAbbr = `m2`;
-      } else if (team1[0].map_3 === economyData._map) {
+      } else if ( team1[0].map_3 !== "" && team1[0].map_3 === matchData._map) {
         mapAbbr = `m3`;
       }
     }
@@ -143,9 +142,8 @@
     }
     else{
       const $economy = document.querySelector(`#economy`);
-      $economy.style.display= `none`
-      const $chartError= document.querySelector(`.chartError`);
-      $chartError.textContent = `Chart Error`;
+      const $title = document.querySelector(`.charts__title`);
+      $title.style.display = 'none';
     }
   };
   const makesecondChart = () => {
@@ -213,8 +211,6 @@
   else{
     const $economy2 = document.querySelector(`#economy2`);
       $economy2.style.display= `none`
-    const $chart2Error= document.querySelector(`.chart2Error`);
-    $chart2Error.textContent = `Chart Error`;
   }
   };
 
