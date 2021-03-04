@@ -68,3 +68,16 @@ canvas{
     font-size: 1.3rem;
     margin-top: 3rem;
 }
+.errors{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    justify-self: center;
+    margin: 2rem;
+}
+.chartError{
+    margin: 1rem;
+}
+.chart2Error{
+    margin: 1rem;
+}

@@ -16,10 +16,6 @@
 
     //pass all the data of games' players and match_id in the sessionstorage
     let match = id.split(`_`);
-    //match[0] is the id and match[1] is the map
-    //why?? a match is composed of different maps -> so a lot of same match id but with different map
-    //get all the data into the session storage --> player data, economy data
-    //getteamdata
     await matchesData.find((element) => {
       if (match[0] == element.match_id && match[1] == element._map) {
         localStorage.setItem("matchData", JSON.stringify(element));
@@ -32,20 +28,34 @@
         localStorage.setItem("economyData", JSON.stringify(element));
       }
     });
+
     const playerArray=[];
-    await playersData.filter(x=>{if(x.match_id === match[0]){
+    await playersData.filter(x=>{if(x.match_id == match[0] && playerArray.length <=10){
+      console.log(`current match id: ${x.match_id}`);
       playerArray.push(x);
     }})
+
     console.log(playerArray);
     localStorage.setItem("playerData", JSON.stringify(playerArray));
+    
     window.open("match.html");
+ 
   };
-  const randomSentence = ()=>{
-    const sentences=["Headshotting bots...","Rushing B...","Flashing Mid...","Watching Heaven...","Holding Long...","T-bagging enemies...", "Peeking Mid..."];
-    $loadingSentence.textContent = sentences[sentenceCounter]
+
+  const randomSentence = () => {
+    const sentences = [
+      "Headshotting bots...",
+      "Rushing B...",
+      "Flashing Mid...",
+      "Watching Heaven...",
+      "Holding Long...",
+      "T-bagging enemies...",
+      "Peeking Mid...",
+    ];
+    $loadingSentence.textContent = sentences[sentenceCounter];
     sentenceCounter++;
-    return sentences [sentenceCounter];
-  }
+    return sentences[sentenceCounter];
+  };
   const getParsedCSV = async (url) => {
     console.log(`Load: ${url}`);
     const response = await axios.get(url, {
@@ -56,11 +66,10 @@
         $loadingProgress.textContent = `${percentage}%`;
       },
     });
-    
+
     const text = response.data;
     return new Promise((resolve) => {
       const rows = [];
-      //end test
       Papa.parse(text, {
         header: true,
         worker: true,
@@ -257,11 +266,8 @@
 
   const init = async () => {
     setInterval(randomSentence, 5000);
-    //test
     $result.style.display = "none";
     $loading.style.display = "block";
-
-    //end test
     console.log(`Start the Application`);
     await getData();
     await fillSelect();

@@ -1,17 +1,19 @@
 {
   let matchData = ``;
   let economyData = ``;
-  let playerData= ``;
+  let playerData = ``;
   let team1 = [];
-  let team2= [];
+  let team2 = [];
   //fetch the element from the sessionstorage
   const $chart = document.getElementById("economy").getContext("2d");
   const $chart2 = document.getElementById("economy2").getContext("2d");
+  //economy first half
   const firstteam1Economy = [];
   const firstteam2Economy = [];
+  //economy second half
   const secondteam1Economy = [];
   const secondteam2Economy = [];
-  let mapAbbr= ``;
+  let mapAbbr = ``;
   const getEconomyData = () => {
     //first half of the game
     for (i = 1; i < 16; i++) {
@@ -39,40 +41,46 @@
     console.log(secondteam2Economy);
   };
 
-  const handlePlayerData = ()=>{
-      //divide the player data in teams
-      const compareValue= matchData.team_1;
-      console.log(compareValue);
-        playerData.filter(x=>{if(x.team === compareValue){
-            team1.push(x);
-        }});
-        console.log(team1)
-        playerData.filter(x =>{
-            if(x.team !== compareValue){
-                team2.push(x);
-            };
-        });
-        console.log(team2);
-        //search which map is the clicked map --> weird structure in the kaggle file
-        //each player has a match id but a match consists of 3 maps so every player has 3 maps 
-        //and the kill for each maps are labeled e.g. m3_deaths --> so we have to know which map 
-        //the clicked one is
-        console.log(team1[0]);
-        //get the map abbr
-        if(team1[0].map_1 === economyData._map){
-          mapAbbr = `m1`;
-        }
-        else if(team1[0].map_2 === economyData._map){
-          mapAbbr = `m2`;
-        }
-        else if(team1[0].map_3 === economyData._map){
-          mapAbbr = `m3`;
-        }
-        console.log(mapAbbr)
-  }
-
-
+  const handlePlayerData = () => {
+    //divide the player data in teams
+    const compareValue = matchData.team_1;
+    console.log(`value: ${compareValue}`);
+    playerData.filter((x) => {
+      if (x.team === compareValue) {
+        team1.push(x);
+      }
+    });
+    console.log(team1);
+    playerData.filter((x) => {
+      if (x.team !== compareValue) {
+        console.log(`true`);
+        team2.push(x);
+      }
+    });
+    console.log(team2);
+  };
+  const abbr = () => {
+    //search which map is the clicked map --> weird structure in the kaggle file
+    //each player has a match id but a match consists of 3 maps so every player has 3 maps
+    //and the kill for each maps are labeled e.g. m3_deaths --> so we have to know which map
+    //the clicked one is
+    if (team1.length > 0) {
+      console.log(team1[0]);
+      //get the map abbr
+      console.log(team1[0]);
+      if (team1[0].map_1 === economyData._map) {
+        mapAbbr = `m1`;
+      } else if (team1[0].map_2 === economyData._map) {
+        console.log(`true`);
+        mapAbbr = `m2`;
+      } else if (team1[0].map_3 === economyData._map) {
+        mapAbbr = `m3`;
+      }
+    }
+    console.log(mapAbbr);
+  };
   const makefirstChart = () => {
+    if(matchData.team_1 === economyData.team_1 && matchData.team_2 === economyData.team_2){
     var firstchart = new Chart($chart, {
       type: "line",
       data: {
@@ -132,27 +140,35 @@
         },
       },
     });
+    }
+    else{
+      const $economy = document.querySelector(`#economy`);
+      $economy.style.display= `none`
+      const $chartError= document.querySelector(`.chartError`);
+      $chartError.textContent = `Chart Error`;
+    }
   };
   const makesecondChart = () => {
+    if(matchData.team_1 === economyData.team_1 && matchData.team_2 === economyData.team_2){
     var secondChart = new Chart($chart2, {
       type: "line",
       data: {
         labels: [
-          "1",
-          "2",
-          "3",
-          "4",
-          "5",
-          "6",
-          "7",
-          "8",
-          "9",
-          "10",
-          "11",
-          "12",
-          "13",
-          "14",
-          "15",
+          "16",
+          "17",
+          "18",
+          "19",
+          "20",
+          "21",
+          "22",
+          "23",
+          "24",
+          "25",
+          "26",
+          "27",
+          "28",
+          "29",
+          "30",
         ],
         datasets: [
           {
@@ -193,6 +209,13 @@
         },
       },
     });
+  }
+  else{
+    const $economy2 = document.querySelector(`#economy2`);
+      $economy2.style.display= `none`
+    const $chart2Error= document.querySelector(`.chart2Error`);
+    $chart2Error.textContent = `Chart Error`;
+  }
   };
 
   const fillLeaderBoard = () => {
@@ -206,51 +229,95 @@
     //playernames
     const $team1Names = $leaderboard1.querySelectorAll(`.playerData`);
     const $team2Names = $leaderboard2.querySelectorAll(`.playerData`);
-    for(i = 0; i < $team1Names.length; i++){
-      $team1Names[i].textContent = team1[i].player_name;
+    console.log($team2Names);
+    //og was $team1Names.lenght etc for the rest
+    //some matches had errors e.g. player missing -> if structures for making sure the rest of the page loads properly
+    for (i = 0; i < $team1Names.length; i++) {
+      if (team1[i] !== undefined) {
+        $team1Names[i].textContent = team1[i].player_name;
+      }
     }
-    for(i = 0; i < $team2Names.length; i++){
-      $team2Names[i].textContent = team2[i].player_name;
+    for (i = 0; i < $team2Names.length; i++) {
+      if (team2[i] !== undefined) {
+        $team2Names[i].textContent = team2[i].player_name;
+      } else {
+        $team2Names[i].textContent = "Not found";
+      }
     }
+
+
     //player kills
     const $team1Kills = $leaderboard1.querySelectorAll(`.killData`);
     const $team2Kills = $leaderboard2.querySelectorAll(`.killData`);
-    for(i = 0; i < $team1Kills.length; i++){
-      $team1Kills[i].textContent = team1[i][`${mapAbbr}_kills`];
+    for (i = 0; i < $team1Kills.length; i++) {
+      if (team1[i] !== undefined) {
+        $team1Kills[i].textContent = team1[i][`${mapAbbr}_kills`];
+      } else {
+        $team1Kills[i].textContent = "Not found";
+      }
     }
-    for(i = 0; i < $team2Kills.length; i++){
-      $team2Kills[i].textContent = team2[i][`${mapAbbr}_kills`];
+    for (i = 0; i < $team2Kills.length; i++) {
+      if (team2[i] !== undefined) {
+        $team2Kills[i].textContent = team2[i][`${mapAbbr}_kills`];
+      } else {
+        $team2Kills[i].textContent = "Not found";
+      }
     }
     //player assists
     const $team1Assists = $leaderboard1.querySelectorAll(`.assistData`);
     const $team2Assists = $leaderboard2.querySelectorAll(`.assistData`);
-    for(i = 0; i < $team1Assists.length; i++){
-      $team1Assists[i].textContent = team1[i][`${mapAbbr}_assists`];
+    for (i = 0; i < $team1Assists.length; i++) {
+      if (team1[i] !== undefined) {
+        $team1Assists[i].textContent = team1[i][`${mapAbbr}_assists`];
+      } else {
+        $team1Assists[i].textContent = "Not found";
+      }
     }
-    for(i = 0; i < $team1Assists.length; i++){
-      $team2Assists[i].textContent = team2[i][`${mapAbbr}_assists`];
+    for (i = 0; i < $team2Assists.length; i++) {
+      if (team2[i] !== undefined) {
+        $team2Assists[i].textContent = team2[i][`${mapAbbr}_assists`];
+      } else {
+        $team2Assists[i].textContent = "Not found";
+      }
     }
     //player deaths
     const $team1Deaths = $leaderboard1.querySelectorAll(`.deathData`);
     const $team2Deaths = $leaderboard2.querySelectorAll(`.deathData`);
-    for(i = 0; i < $team1Deaths.length; i++){
-      $team1Deaths[i].textContent = team1[i][`${mapAbbr}_deaths`];
+    for (i = 0; i < $team1Deaths.length; i++) {
+      if (team1[i] !== undefined) {
+        $team1Deaths[i].textContent = team1[i][`${mapAbbr}_deaths`];
+      } else {
+        $team1Deaths[i].textContent = "Not found";
+      }
     }
-    for(i = 0; i < $team2Deaths.length; i++){
-      $team2Deaths[i].textContent = team2[i][`${mapAbbr}_deaths`];
+    for (i = 0; i < $team2Deaths.length; i++) {
+      if (team2[i] !== undefined) {
+        $team2Deaths[i].textContent = team2[i][`${mapAbbr}_deaths`];
+      } else {
+        $team2Deaths[i].textContent = "Not found";
+      }
     }
-     //player HS
-     const $team1Hs = $leaderboard1.querySelectorAll(`.headshotData`);
-     const $team2Hs = $leaderboard2.querySelectorAll(`.headshotData`);
-     for(i = 0; i < $team1Hs.length; i++){
-       let hs = (team1[i][`${mapAbbr}_hs`]/team1[i][`${mapAbbr}_kills`])*100;
-       $team1Hs[i].textContent = `${Math.round(hs)}%`;
-     }
-     for(i = 0; i < $team2Hs.length; i++){
-      let hs = (team2[i][`${mapAbbr}_hs`]/team2[i][`${mapAbbr}_kills`])*100;
-       $team2Hs[i].textContent = `${Math.round(hs)}%`;
-     }
-    
+    //player HS
+    const $team1Hs = $leaderboard1.querySelectorAll(`.headshotData`);
+    const $team2Hs = $leaderboard2.querySelectorAll(`.headshotData`);
+    for (i = 0; i < $team1Hs.length; i++) {
+      if (team1[i] !== undefined) {
+        let hs =
+          (team1[i][`${mapAbbr}_hs`] / team1[i][`${mapAbbr}_kills`]) * 100;
+        $team1Hs[i].textContent = `${Math.round(hs)}%`;
+      } else {
+        $team1Hs[i].textContent = "Not found";
+      }
+    }
+    for (i = 0; i < $team2Hs.length; i++) {
+      if (team2[i] !== undefined) {
+        let hs =
+          (team2[i][`${mapAbbr}_hs`] / team2[i][`${mapAbbr}_kills`]) * 100;
+        $team2Hs[i].textContent = `${Math.round(hs)}%`;
+      } else {
+        $team2Hs[i].textContent = "Not found";
+      }
+    }
   };
 
   const close = (e) => {
@@ -273,8 +340,7 @@
       <p>:</p>
       <p class="highlight__match--score ct">${matchData.result_2}</p>
     </div>
-  </div>
-`;
+  </div>`;
   };
   const init = async () => {
     matchData = await JSON.parse(localStorage.getItem("matchData"));
@@ -284,10 +350,19 @@
     console.log(economyData._map);
     banner();
     handlePlayerData();
-    fillLeaderBoard();
-    // await getData();
+    abbr();
     makefirstChart();
     makesecondChart();
+    if (team1.length !== 0 && team2.length !== 0) {
+      fillLeaderBoard();
+      // await getData();
+    } else {
+      const $leaderboards = document.querySelector(`.leaderboards`);
+      $leaderboards.style.display = `none`;
+      const $error = document.querySelector(`.error p`);
+      console.log($error);
+      $error.textContent = `Database error (Players not found in database)`;
+    }
     //return button
     const $home = document.querySelector(`.return`);
     $home.addEventListener(`click`, close);
