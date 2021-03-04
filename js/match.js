@@ -230,12 +230,25 @@
     //some matches had errors e.g. player missing -> if structures for making sure the rest of the page loads properly
     for (i = 0; i < $team1Names.length; i++) {
       if (team1[i] !== undefined) {
+        if(team1[i].player_name !==""){
         $team1Names[i].textContent = team1[i].player_name;
+      }
+      else{
+        $team1Names[i].textContent= "Not found"
+      }
+      }
+      else{
+        $team1Names[i].textContent= "Not found"
       }
     }
     for (i = 0; i < $team2Names.length; i++) {
       if (team2[i] !== undefined) {
+        if(team2[i].player_name !== ""){
         $team2Names[i].textContent = team2[i].player_name;
+        }
+        else{
+          $team2Names[i].textContent = "Not found";
+        }
       } else {
         $team2Names[i].textContent = "Not found";
       }
@@ -247,14 +260,24 @@
     const $team2Kills = $leaderboard2.querySelectorAll(`.killData`);
     for (i = 0; i < $team1Kills.length; i++) {
       if (team1[i] !== undefined) {
+        if(team1[i][`${mapAbbr}_kills`] !==""){
         $team1Kills[i].textContent = team1[i][`${mapAbbr}_kills`];
+      }
+      else{
+        $team1Kills[i].textContent = "Not found";
+      }
       } else {
         $team1Kills[i].textContent = "Not found";
       }
     }
     for (i = 0; i < $team2Kills.length; i++) {
       if (team2[i] !== undefined) {
+        if(team2[i][`${mapAbbr}_kills`] !==""){
         $team2Kills[i].textContent = team2[i][`${mapAbbr}_kills`];
+        }
+        else{
+          $team2Kills[i].textContent = "Not found";
+        }
       } else {
         $team2Kills[i].textContent = "Not found";
       }
@@ -264,14 +287,24 @@
     const $team2Assists = $leaderboard2.querySelectorAll(`.assistData`);
     for (i = 0; i < $team1Assists.length; i++) {
       if (team1[i] !== undefined) {
+        if(team1[i][`${mapAbbr}_assists`] !==""){
         $team1Assists[i].textContent = team1[i][`${mapAbbr}_assists`];
+        }
+        else {
+          $team1Assists[i].textContent = "Not found";
+        }
       } else {
         $team1Assists[i].textContent = "Not found";
       }
     }
     for (i = 0; i < $team2Assists.length; i++) {
       if (team2[i] !== undefined) {
+        if(team2[i][`${mapAbbr}_assists`] !==""){
         $team2Assists[i].textContent = team2[i][`${mapAbbr}_assists`];
+      }
+      else {
+        $team2Assists[i].textContent = "Not found";
+      }
       } else {
         $team2Assists[i].textContent = "Not found";
       }
@@ -281,14 +314,24 @@
     const $team2Deaths = $leaderboard2.querySelectorAll(`.deathData`);
     for (i = 0; i < $team1Deaths.length; i++) {
       if (team1[i] !== undefined) {
+        if(team1[i][`${mapAbbr}_deaths`] !==""){
         $team1Deaths[i].textContent = team1[i][`${mapAbbr}_deaths`];
+        }
+        else {
+          $team1Deaths[i].textContent = "Not found";
+        }
       } else {
         $team1Deaths[i].textContent = "Not found";
       }
     }
     for (i = 0; i < $team2Deaths.length; i++) {
       if (team2[i] !== undefined) {
+        if(team2[i][`${mapAbbr}_deaths`] !==""){
         $team2Deaths[i].textContent = team2[i][`${mapAbbr}_deaths`];
+        }
+        else {
+          $team2Deaths[i].textContent = "Not found";
+        }
       } else {
         $team2Deaths[i].textContent = "Not found";
       }
@@ -298,18 +341,28 @@
     const $team2Hs = $leaderboard2.querySelectorAll(`.headshotData`);
     for (i = 0; i < $team1Hs.length; i++) {
       if (team1[i] !== undefined) {
+        if(team1[i][`${mapAbbr}_hs`] !==""){
         let hs =
           (team1[i][`${mapAbbr}_hs`] / team1[i][`${mapAbbr}_kills`]) * 100;
         $team1Hs[i].textContent = `${Math.round(hs)}%`;
+      }
+      else {
+        $team1Hs[i].textContent = "Not found";
+      }
       } else {
         $team1Hs[i].textContent = "Not found";
       }
     }
     for (i = 0; i < $team2Hs.length; i++) {
       if (team2[i] !== undefined) {
+        if(team2[i][`${mapAbbr}_hs`] !==""){
         let hs =
           (team2[i][`${mapAbbr}_hs`] / team2[i][`${mapAbbr}_kills`]) * 100;
         $team2Hs[i].textContent = `${Math.round(hs)}%`;
+        }
+        else {
+          $team2Hs[i].textContent = "Not found";
+        }
       } else {
         $team2Hs[i].textContent = "Not found";
       }

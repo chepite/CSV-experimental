@@ -7,7 +7,7 @@
   const $loadingProgress = $loading.querySelector(".loading__progress");
   const $loadingSentence = document.querySelector(`.loading__sentence`);
   const $result = document.querySelector(`.content`);
-  let sentenceCounter = -1;
+  let sentenceCounter = 0;
   let detailList = [];
   const pass = async (e) => {
     e.preventDefault();
@@ -52,8 +52,15 @@
       "T-bagging enemies...",
       "Peeking Mid...",
     ];
+    if(sentenceCounter < sentences.length){
     $loadingSentence.textContent = sentences[sentenceCounter];
     sentenceCounter++;
+    }
+    else{
+      sentenceCounter =0;
+      $loadingSentence.textContent = sentences[sentenceCounter];
+    sentenceCounter++;
+    }
     return sentences[sentenceCounter];
   };
   const getParsedCSV = async (url) => {
