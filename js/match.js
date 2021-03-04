@@ -216,9 +216,9 @@
 
   const fillLeaderBoard = () => {
     const $team1 = document.querySelector(`.team_1`);
-    $team1.textContent = economyData.team_1;
+    $team1.textContent = matchData.team_1;
     const $team2 = document.querySelector(`.team_2`);
-    $team2.textContent = economyData.team_2;
+    $team2.textContent = matchData.team_2;
     //leaderboards
     const $leaderboard1 = document.querySelector(`.leaderboardTeam1`);
     const $leaderboard2 = document.querySelector(`.leaderboardTeam2`);
@@ -357,7 +357,7 @@
       $leaderboards.style.display = `none`;
       const $error = document.querySelector(`.error p`);
       console.log($error);
-      $error.textContent = `Database error (Players not found in database)`;
+      $error.textContent = `Players not found in database`;
     }
     //return button
     const $home = document.querySelector(`.return`);
